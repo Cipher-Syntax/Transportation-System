@@ -17,13 +17,13 @@ header{
     background-color: #323232;
     color: #D0D0D0;
     text-align: center;
-    height: 250px;
+    height: 300px;
     width: 100%;
 }
 #logo{
     align-items: center;
     font-size: 60px;
-    padding-top: 75px;
+    padding-top: 90px;
     font-weight: bold;
 }
 #create-account{
