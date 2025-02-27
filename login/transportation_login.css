@@ -17,7 +17,7 @@ header{
     background-color: #323232;
     color: #D0D0D0;
     text-align: center;
-    height: 250px;
+    height: 300px;
     width: 100%;
 }
 #logo{
@@ -27,21 +27,21 @@ header{
     font-weight: bold;
 }
 #login{
-    margin-top: 30px;
+    margin-top: 50px;
     font-size: 40px;
     color: #222222;
     text-align: center;
     text-shadow: 0px 12px 20px rgba(0, 0, 0, 0.5);
 }
 .user-registration{
-    margin-top: 35px;
+    margin-top: 40px;
     margin-left: auto;
     margin-right: auto;
     max-width: 350px;
 }
 .user-registration input{
     padding: 6px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     border-top: none;
     border-left: none;
     border-right: none;
@@ -55,6 +55,7 @@ header{
     color: white;
     border-radius: 10px;
     margin-bottom: 0;
+    padding: 6px;
 }
 .links{
     padding: 12px;
