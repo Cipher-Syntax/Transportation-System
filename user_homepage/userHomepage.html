@@ -5,20 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage</title>
     <link rel="stylesheet" href="userHompage.css">
-    <script src="userHomepage.js"></script>
 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
     <header>
         <div class="sidebar-menu">
-            <i class='bx bx-menu'></i>
+            <i class='bx bx-menu' id="menu-icon"></i>
+            <div class="sidebar" id="sidebar">
+                <button class="close-btn" id="close-btn">
+                    <i class='bx bx-menu' id="menu-icon"></i>
+                </button>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">History</a></li>
+                    <li><a href="#">Settings</a></li>
+                </ul>
+                <a href="#" class="logout">Logout</a>
+            </div>
         </div>
 
         <div class="logo">
             <h1>GoMove</h1>
         </div>
     </header>
+
+    <script src="userHomepage.js"></script>
 
     <div class="user-info-container">
         <div class="user-info">
