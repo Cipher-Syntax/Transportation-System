@@ -32,7 +32,7 @@ header{
 .user-info-container{
     background-color: #8A8A8A;
     max-width: 95%;
-    height: 300px;
+    height: 250px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
@@ -55,13 +55,51 @@ header{
 }
 .user-profile img{
     border-radius: 50%;
+    height: 150px;
+    width: 150px;
 }
 .interaction{
-    display: grid;
-    grid-template-rows: 25px, 25px, 25px;
-    max-height: fit-content;
+    background-image: url(/Transportation-System/user_homepage/car_logo.png);
+    object-fit: cover;
 }
-.interaction-logo{
+.hero-img{
+    width: 100%;
+    height: 60vh;
+}
+.interaction-container{
+    width: 90vw;
+    align-items: center;
+}
+.hero-container{
+    display: grid;
+    row-gap: 100px;
+    /* float: right; */
+    margin-left: 130px;
+}
+#interaction-logo{
+    font-size: 50px;
+    margin-top: 140px;
+}
+#link-catchphrase{
+    font-size: 24px;
+    padding-left: 35px;
+}
+/* #interaction-logo{
+    font-size: 40px;
+    float: left;
+    max-width: fit-content;
+    padding-right: 98px;
+    pa
+}
+#link-catchphrase{
+    font-size: 24px;
+    float: right;
+    padding-top: 200px;
+    padding-right: 98px;
+    max-width: fit-content;
+} */
+
+/* .interaction-logo{
     position: absolute;
     bottom: 50px;
     font-size: 30px;
@@ -72,12 +110,10 @@ header{
     bottom: -120px;
     font-size: 24px;
     left: 150px;
-}
+} */
+
 .separator{
     text-decoration: dotted;
-}
-.history-scroller{
-
 }
 #history{
     padding: 20px;
@@ -92,6 +128,9 @@ header{
     scroll-behavior: smooth;
     border: none;
     max-height: 500px;
+}
+.history-drivers p{
+    padding-bottom: 10px;
 }
 footer{
     background-color: #323232;
