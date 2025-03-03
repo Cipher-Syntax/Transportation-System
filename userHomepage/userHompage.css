@@ -185,4 +185,7 @@ header{
 footer{
     background-color: #323232;
     height: 70px;
+    color: #fff;
+    text-align: center;
+    align-content: center;
 }
