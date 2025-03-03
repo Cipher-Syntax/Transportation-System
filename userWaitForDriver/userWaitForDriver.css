@@ -110,6 +110,7 @@ header{
     margin-right: auto;
     height: 400px;
     margin-top: 15vh;
+    margin-bottom: 15vh;
 }
 .car{
     height: 200px;
@@ -132,4 +133,11 @@ header{
     font-size: 14px;
     float: left;
     margin-top: 100px;
+}
+footer{
+    background-color: #323232;
+    height: 70px;
+    color: #fff;
+    text-align: center;
+    align-content: center;
 }
