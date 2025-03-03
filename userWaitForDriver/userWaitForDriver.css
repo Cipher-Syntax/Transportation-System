@@ -27,7 +27,7 @@ header{
     padding-right: 10px;
     height: 70px;
 }
-.sidebar {
+/* .sidebar {
     position: fixed;
     top: 0;
     left: -250px;
@@ -36,7 +36,7 @@ header{
     background-color: #D0D0D0;
     padding-top: 20px;
     transition: 0.3s;
-}
+} */
 .sidebar.active {
     left: 0;
 }
@@ -75,7 +75,7 @@ header{
     position: absolute;
     top: 0;
 }
-.logout {
+/* .logout {
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -89,6 +89,33 @@ header{
     padding-right: 15px;
     padding-top: 20px;
     left: 0;
+} */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100vh; /* Use viewport height instead */
+    background-color: #D0D0D0;
+    padding-top: 20px;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column; /* Use flexbox for better layout control */
+    justify-content: space-between; /* Push content to top and bottom */
+}
+
+/* Keep your normal sidebar content styling */
+
+.logout {
+    width: 100%;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    background-color: #323232;
+    text-align: right;
+    padding: 20px 15px;
+    margin-top: auto; /* Push to bottom with flexbox */
 }
 .bx-menu{
     font-size: 30px;
