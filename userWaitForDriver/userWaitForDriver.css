@@ -100,7 +100,7 @@ header{
         
 .container {
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
     background-color: #8a8a8a;
     border-radius: 10px;
     padding: 40px 20px;
@@ -120,10 +120,8 @@ header{
 .loading-text {
     color: white;
     font-size: 24px;
-    /* margin-bottom: 40px; */
-    /* position: absolute; */
     max-width: fit-content;
-    margin-left: 160px;
+    margin-left: 110px;
     margin-right: auto;
     position: absolute;
     bottom: 150px;
