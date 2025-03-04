@@ -145,14 +145,37 @@ header{
     height: 300px;
     object-fit: cover;
 }
-.loading-text {
+/* .loading-text {
     color: white;
     font-size: 24px;
     max-width: fit-content;
     max-height: fit-content;
     margin-right: auto;
     margin-left: auto;
+} */
+
+.loading-text {
+    color: white;
+    font-size: 24px;
+    max-width: fit-content;
+    margin: auto;
+    display: flex;
+    align-items: center;
 }
+
+.dots::after {
+    content: "";
+    display: inline-block;
+    animation: dotsAnimation 1.5s infinite steps(3);
+}
+
+@keyframes dotsAnimation {
+    0% { content: ""; }
+    33% { content: "."; }
+    66% { content: ".."; }
+    100% { content: "..."; }
+}
+
 .note-text {
     color: rgba(255, 255, 255, 0.8);
     font-size: 14px;
@@ -165,5 +188,5 @@ footer{
     color: #fff;
     text-align: center;
     align-content: center;
-    margin-top: 400px;
+    margin-top: 700px;
 }
