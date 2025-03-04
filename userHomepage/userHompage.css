@@ -125,11 +125,22 @@ header{
     border-radius: 50%;
     height: 150px;
     width: 150px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
-.interaction{
-    background-image: url(/Transportation-System/user_homepage/car_logo.png);
+/* .interaction{
+    background-image: url(/Transportation-System/images/car_logo.png);
     object-fit: cover;
+} */
+
+.interaction {
+    background-image: url(/Transportation-System/images/car_logo.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
+
 .hero-img{
     width: 100%;
     height: 60vh;
@@ -140,16 +151,18 @@ header{
 }
 .hero-container{
     display: grid;
-    row-gap: 100px;
-    margin-left: 130px;
+    row-gap: 180px;
+    /* margin-left: 130px; */
 }
 #interaction-logo{
+    text-align: center;
     font-size: 50px;
-    margin-top: 140px;
+    margin-top: 50px;
 }
 #link-catchphrase{
     font-size: 24px;
-    padding-left: 35px;
+    /* padding-left: 35px; */
+    text-align: center;
 }
 #separator{
     height: 3px;
@@ -175,13 +188,23 @@ header{
     align-items: center;
     padding: 10px;
 }
-.driver-img{
-    background-image: url(/Transportation-System/user_homepage/cipher.jpg);
+/* .driver-img{
+    background-image: url(/Transportation-System/images/cipher.jpg);
     object-fit: cover;
     width: 30px;
     height: 30px;
     border-radius: 50%;
+} */
+
+.driver-img {
+    background-image: url(/Transportation-System/images/cipher.jpg);
+    background-size: cover; /* Ensures the image covers the area */
+    background-position: center; /* Centers the image */
+    width: 30px; /* Increase width */
+    height: 30px; /* Increase height */
+    border-radius: 50%;
 }
+
 footer{
     background-color: #323232;
     height: 70px;
