@@ -26,3 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = "/Transportation-System/userHomepage/userHomepage.html";
     });
 });
+
+document.getElementById('menu-icon').addEventListener('click', function() {
+    document.getElementById('sidebar').classList.add('active');
+});
+
+document.getElementById('close-btn').addEventListener('click', function() {
+    document.getElementById('sidebar').classList.remove('active');
+});

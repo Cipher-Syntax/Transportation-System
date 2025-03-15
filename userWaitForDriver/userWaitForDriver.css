@@ -111,6 +111,7 @@ header{
     margin-right: auto;
     height: 400px;
     margin-top: 15vh;
+    margin-bottom: 15vh;
 }
 .car{
     height: 200px;
@@ -179,13 +180,14 @@ header{
         transform: rotate(360deg);
     }
 }
-
-
 footer{
     background-color: #323232;
+    color: #D0D0D0;
     height: 70px;
-    color: #fff;
-    text-align: center;
-    align-content: center;
-    width: 100%;
+}
+footer p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
 }
