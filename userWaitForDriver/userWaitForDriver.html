@@ -33,18 +33,26 @@
     </header>
 
 
-    <div class="container">
+    
+    <div class="container" id="wait-container">
         <div class="car">
             <img src="/Transportation-System/images/car_logo.png">
         </div>
-        <!-- <div class="loading-text">Wait for your driver...</div> -->
         <div class="loading-text">Wait for your driver<span class="dots"></span></div>
-
-
-        
-        <div class="note-text">note: This may take a minute...</div>
+        <div class="note-text">Note: This may take a while...</div>
+        <div class="loader" id="loader"></div>
     </div>
 
+    <div class="driver-late-container" id="driver-late-container">
+        <div class="car">
+            <img src="/Transportation-System/images/car_logo.png">
+        </div>
+        <div class="driver-loading-text">Driver is taking too long<span class="dots"></span></div>
+        <div class="user-choice">
+            <p class="cancel">Cancel</p>
+            <p class="wait">Wait</p>
+        </div>
+    </div>
     
     <footer>
         <p>Copyright | &copy; 2025 | GoMove</p>

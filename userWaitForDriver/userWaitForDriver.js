@@ -1,8 +1,28 @@
-const dots = document.querySelector('.dots');
+document.addEventListener("DOMContentLoaded", function () {
+    const waitContainer = document.getElementById("wait-container");
+    const driverLateContainer = document.getElementById("driver-late-container");
+    const loader = document.getElementById("loader");
+    const waitButton = document.querySelector(".wait");
+    const cancelButton = document.querySelector(".cancel");
 
-let count = 0;
+    driverLateContainer.style.display = "none";
 
-setInterval(() => {
-    count = (count + 1) % 4; // Loop through 0,1,2,3
-    dots.innerHTML = ".".repeat(count);
-}, 500);
+    function showDriverLateContainer() {
+        waitContainer.style.display = "none";
+        driverLateContainer.style.display = "block";
+        loader.style.display = "none";
+    }
+
+    function restartWaiting() {
+        driverLateContainer.style.display = "none";
+        waitContainer.style.display = "block";
+        loader.style.display = "block";
+        setTimeout(showDriverLateContainer, 10000);
+    }
+
+    setTimeout(showDriverLateContainer, 10000);
+    waitButton.addEventListener("click", restartWaiting);
+    cancelButton.addEventListener("click", () => {
+        window.location.href = "/Transportation-System/userHomepage/userHomepage.html";
+    });
+});
