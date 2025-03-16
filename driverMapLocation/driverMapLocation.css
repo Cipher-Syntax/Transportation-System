@@ -200,7 +200,7 @@ header{
     transform: translateX(-50%);
 }
 .destination-label {
-    right: 12;
+    right: 15px;
     transform: translateX(50%);
 }
 footer{
