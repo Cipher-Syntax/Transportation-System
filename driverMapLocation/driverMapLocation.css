@@ -204,6 +204,7 @@ header{
     transform: translateX(50%);
 }
 footer{
+    margin-top: 100px;
     background-color: #323232;
     height: 70px;
     color: #fff;
