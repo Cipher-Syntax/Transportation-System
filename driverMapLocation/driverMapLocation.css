@@ -121,10 +121,9 @@ header{
     margin-top: 30px;
     display: flex;
     justify-content: center;
-
 }
 #map{ 
-    height: 900px; 
+    height: 500px; 
     width: 95%; 
     border-radius: 20px;
 }
@@ -138,7 +137,7 @@ header{
 }
 .progress-bar {
     position: relative;
-    height: 40px;
+    height: 20px;
     background-color: #D0D0D0;
     border-radius: 20px;
     overflow: visible;
