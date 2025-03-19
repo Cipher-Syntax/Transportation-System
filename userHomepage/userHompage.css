@@ -105,6 +105,9 @@ header{
 .logo{
     font-size: 20px;
 }
+#notif-bell{
+    font-size: 24px;
+}
 .user-info-container{
     background-color: #27AE60;
     max-width: 95%;
