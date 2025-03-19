@@ -22,14 +22,14 @@ document.addEventListener('DOMContentLoaded', function() {
     
     overlayForm.style.display = 'none';
 
-    // linkCatchphrase.addEventListener('click', function() {
-    //     overlayForm.style.display = 'block';
-    // });
+    linkCatchphrase.addEventListener('click', function() {
+        overlayForm.style.display = 'block';
+    });
 
-    // cancelAction.addEventListener('click', function() {
-    //     overlayForm.style.display = 'none';
-    //     resetForm();
-    // });
+    cancelAction.addEventListener('click', function() {
+        overlayForm.style.display = 'none';
+        resetForm();
+    });
     
     // locationInput.addEventListener('input', calculatePrice);
     // destinationInput.addEventListener('input', calculatePrice);
