@@ -1,3 +1,27 @@
+<?php
+    // session_start();
+    include("../index.php");
+
+    if (isset($_POST['signup'])) {
+        $firstname = $_POST['firstname'];
+        $lastname = $_POST['lastname'];
+        $email = $_POST['email'];
+        $password = password_hash($_POST['Password'], PASSWORD_DEFAULT); // Encrypt password
+    
+        $query = "INSERT INTO users (firstname, lastname, email, password, role) VALUES (?, ?, ?, ?, 'user')";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("ssss", $firstname, $lastname, $email, $password);
+        if ($stmt->execute()) {
+            header("Location: login.php"); // Redirect to login page after successful signup
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+    }
+    
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,21 +42,20 @@
     <h2 id="create-account">Create Account</h2>
 
     <div class="user-registration">
-        <form action="" method="post">
+        <form action="../index.php" method="POST">
             <div class="fullname">
                 <div id="firstname">
-                    <input type="txt" name="firstname" placeholder="Firstname" required/>
+                    <input type="text" name="firstname" placeholder="Firstname" required />
                 </div>
                 <div id="lastname">
-                   <input type="txt" name="lastname" placeholder="Lastname" required/>
+                <input type="text" name="lastname" placeholder="Lastname" required />
                 </div>
             </div>
-
-            <input type="email" name="email" id="email" placeholder="Email" required/>
-            <input type="password" name="Password" id="Password" placeholder="Password" required/>
-            
-            <center><input type="submit" name="button" id="createAccount-btn" value="Create Account" /></center>
+            <input type="email" name="email" id="email" placeholder="Email" required />
+            <input type="password" name="Password" id="Password" placeholder="Password" required />
+            <center><input type="submit" name="signup" id="createAccount-btn" value="Create Account" /></center>
         </form>
+
 
         <div class="links">Already have an account? 
             <a href="../login/transportation_login.php" id="create">Login</a> <br>
