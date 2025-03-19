@@ -27,6 +27,9 @@ header{
     padding-right: 10px;
     height: 70px;
 }
+#notif-bell{
+    font-size: 24px;
+}
 .sidebar {
     position: fixed;
     top: 0;
