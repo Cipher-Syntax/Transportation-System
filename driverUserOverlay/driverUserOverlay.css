@@ -15,7 +15,7 @@ html{
 body{
     margin: 0;
     padding: 0;
-    background-color: #D0D0D0;
+    background-color: #F5F5F5;
 }
 .display-container{
     position: absolute;
@@ -31,11 +31,11 @@ body{
     height: 500px;
     align-items: center;
     justify-content: center;
-    border: 1px solid #323232;
+    border: 1px solid #1E8449;
     margin-left: auto;
     margin-right: auto;
-    background-color: #8A8A8A;
-    color: #D0D0D0;
+    background-color: #27AE60;
+    color: white;
 }
 .image-container img{
     width: 150px;
@@ -52,13 +52,13 @@ body{
     font-size: 24px;
 }
 .user-how-far-from-driver{
-    background-color: #323232;
+    background-color: #1E8449;
     border-radius: 50%;
     width: 150px;
     height: 150px;
 }
 .user-how-far-from-driver h3{
-    color: #D0D0D0;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,4 +72,18 @@ body{
     column-gap: 250px;
     margin-top: 100px;
     font-size: 30px;
+}
+.action p:first-child {
+    color: #F5F5F5;
+    cursor: pointer;
+}
+.action p:first-child:hover {
+    color: #C0392B;
+}
+.action p:last-child {
+    color: #F39C12;
+    cursor: pointer;
+}
+.action p:last-child:hover {
+    color: #F5F5F5;
 }
