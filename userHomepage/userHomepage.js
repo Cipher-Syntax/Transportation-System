@@ -22,8 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const baseRate = 50;
     const perKmRate = 25;
     let userMarker;
+    let destinationMarker;
     let map;
     let userLocation = null;
+    let destinationLocation = null;
 
     // Hide overlay form initially
     overlayForm.style.display = 'none';
@@ -96,6 +98,13 @@ document.addEventListener('DOMContentLoaded', function() {
             return div;
         };
         locationButton.addTo(map);
+
+        // Add click event on map to set destination
+        map.on('click', function(e) {
+            if (destinationInput === document.activeElement || !locationInput.value) {
+                setDestinationFromMap(e.latlng);
+            }
+        });
     }
 
     function getUserLocation() {
@@ -127,14 +136,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Add user marker
-        userMarker = L.marker(e.latlng).addTo(map)
-            .bindPopup(`You are within ${radius} meters from this point`).openPopup();
+        userMarker = L.marker(e.latlng, {
+            icon: L.divIcon({
+                className: 'user-marker',
+                html: '<div style="background-color: #1E8449; width: 12px; height: 12px; border-radius: 50%; border: 3px solid white;"></div>',
+                iconSize: [18, 18],
+                iconAnchor: [9, 9]
+            })
+        }).addTo(map)
+            .bindPopup(`Your location`).openPopup();
 
         // Add accuracy circle
         L.circle(e.latlng, radius).addTo(map);
 
         // Update the location input with coordinates or reverse geocode
-        reverseGeocode(e.latlng);
+        reverseGeocode(e.latlng, 'location');
 
         // Ask user if they want to use current location
         if (!locationInput.value) {
@@ -146,21 +162,183 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function setDestinationFromMap(latlng) {
+        // Clear previous destination marker
+        if (destinationMarker) {
+            map.removeLayer(destinationMarker);
+        }
+
+        // Set destination marker
+        destinationMarker = L.marker(latlng, {
+            icon: L.divIcon({
+                className: 'destination-marker',
+                html: '<div style="background-color: #F39C12; width: 12px; height: 12px; border-radius: 50%; border: 3px solid white;"></div>',
+                iconSize: [18, 18],
+                iconAnchor: [9, 9]
+            })
+        }).addTo(map)
+            .bindPopup('Destination').openPopup();
+
+        destinationLocation = latlng;
+        
+        // Set destination with reverse geocode
+        reverseGeocode(latlng, 'destination');
+        
+        // If we have both points, draw route and calculate actual distance
+        if (userLocation && destinationLocation) {
+            drawRoute();
+            calculateActualDistance();
+        }
+    }
+
+    function drawRoute() {
+        // Check if a route layer already exists and remove it
+        if (window.routeLayer) {
+            map.removeLayer(window.routeLayer);
+        }
+        
+        // Draw a simple line for the route
+        window.routeLayer = L.polyline([
+            [userLocation.lat, userLocation.lng],
+            [destinationLocation.lat, destinationLocation.lng]
+        ], {
+            color: '#27AE60',
+            weight: 4,
+            opacity: 0.7
+        }).addTo(map);
+        
+        // Fit the map to show both points
+        let bounds = L.latLngBounds([userLocation, destinationLocation]);
+        map.fitBounds(bounds, {padding: [30, 30]});
+    }
+
+    function calculateActualDistance() {
+        // Calculate actual distance in kilometers
+        const lat1 = userLocation.lat;
+        const lon1 = userLocation.lng;
+        const lat2 = destinationLocation.lat;
+        const lon2 = destinationLocation.lng;
+        
+        // Haversine formula to calculate distance
+        const R = 6371; // Radius of the earth in km
+        const dLat = deg2rad(lat2-lat1);
+        const dLon = deg2rad(lon2-lon1); 
+        const a = 
+            Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+            Math.sin(dLon/2) * Math.sin(dLon/2); 
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+        const distance = R * c; // Distance in km
+        
+        // Update price based on actual distance
+        updatePrice(distance);
+    }
+
+    function deg2rad(deg) {
+        return deg * (Math.PI/180);
+    }
+
+    function updatePrice(distance) {
+        const price = baseRate + (perKmRate * distance);
+        priceDisplay.textContent = `PHP ${price.toFixed(0)}`;
+    }
+
     function onLocationError(e) {
         alert(`Error: ${e.message}`);
         console.error('Location error:', e);
     }
 
-    function reverseGeocode(latlng) {
+    function reverseGeocode(latlng, field) {
         // Reverse geocode to get address
         fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latlng.lat}&lon=${latlng.lng}&format=json`)
             .then(response => response.json())
             .then(data => {
-                locationInput.value = data.display_name;
+                if (field === 'location') {
+                    locationInput.value = data.display_name;
+                } else if (field === 'destination') {
+                    destinationInput.value = data.display_name;
+                }
+                
+                // If both fields have values, calculate price
+                if (locationInput.value && destinationInput.value) {
+                    calculatePrice();
+                }
             })
             .catch(err => {
                 console.error('Error getting address:', err);
-                locationInput.value = `${latlng.lat.toFixed(5)}, ${latlng.lng.toFixed(5)}`;
+                if (field === 'location') {
+                    locationInput.value = `${latlng.lat.toFixed(5)}, ${latlng.lng.toFixed(5)}`;
+                } else if (field === 'destination') {
+                    destinationInput.value = `${latlng.lat.toFixed(5)}, ${latlng.lng.toFixed(5)}`;
+                }
+            });
+    }
+
+    // Search for location when typing in the destination field
+    function setupDestinationSearch() {
+        let searchTimeout;
+        
+        destinationInput.addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                if (destinationInput.value.length > 3) {
+                    searchLocation(destinationInput.value, 'destination');
+                }
+            }, 500);
+        });
+    }
+
+    // Search for location when typing in the location field
+    function setupLocationSearch() {
+        let searchTimeout;
+        
+        locationInput.addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                if (locationInput.value.length > 3) {
+                    searchLocation(locationInput.value, 'location');
+                }
+            }, 500);
+        });
+    }
+
+    function searchLocation(query, field) {
+        // Nominatim search API
+        fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&viewbox=121.8790,6.7214,122.2790,7.1214&bounded=1`)
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.length > 0) {
+                    // Get the first result
+                    const result = data[0];
+                    const latlng = L.latLng(result.lat, result.lon);
+                    
+                    // Update the appropriate field and marker
+                    if (field === 'location') {
+                        userLocation = latlng;
+                        map.setView(latlng, 16);
+                        if (userMarker) map.removeLayer(userMarker);
+                        userMarker = L.marker(latlng, {
+                            icon: L.divIcon({
+                                className: 'user-marker',
+                                html: '<div style="background-color: #1E8449; width: 12px; height: 12px; border-radius: 50%; border: 3px solid white;"></div>',
+                                iconSize: [18, 18],
+                                iconAnchor: [9, 9]
+                            })
+                        }).addTo(map);
+                        locationInput.value = result.display_name;
+                    } else if (field === 'destination') {
+                        setDestinationFromMap(latlng);
+                    }
+                    
+                    // If both origin and destination exist, draw route
+                    if (userLocation && destinationLocation) {
+                        drawRoute();
+                        calculateActualDistance();
+                    }
+                }
+            })
+            .catch(err => {
+                console.error('Error searching location:', err);
             });
     }
 
@@ -168,6 +346,8 @@ document.addEventListener('DOMContentLoaded', function() {
     linkCatchphrase.addEventListener('click', function() {
         overlayForm.style.display = 'block';
         createMapElements();
+        setupDestinationSearch();
+        setupLocationSearch();
     });
 
     cancelAction.addEventListener('click', function() {
@@ -181,14 +361,58 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    destinationInput.addEventListener('click', function() {
+        if (map) {
+            // Change cursor to indicate clicking on map will set destination
+            map.getContainer().style.cursor = 'crosshair';
+            
+            // Show tooltip or instruction
+            const instructionDiv = document.createElement('div');
+            instructionDiv.id = 'map-instruction';
+            instructionDiv.style.position = 'absolute';
+            instructionDiv.style.bottom = '10px';
+            instructionDiv.style.left = '50%';
+            instructionDiv.style.transform = 'translateX(-50%)';
+            instructionDiv.style.backgroundColor = 'rgba(30, 132, 73, 0.8)';
+            instructionDiv.style.color = 'white';
+            instructionDiv.style.padding = '8px';
+            instructionDiv.style.borderRadius = '4px';
+            instructionDiv.style.zIndex = '1000';
+            instructionDiv.style.pointerEvents = 'none';
+            instructionDiv.textContent = 'Click on map to set destination';
+            
+            // Remove existing instruction if exists
+            const existingInstruction = document.getElementById('map-instruction');
+            if (existingInstruction) {
+                existingInstruction.remove();
+            }
+            
+            document.getElementById('map').appendChild(instructionDiv);
+            
+            // Remove instruction after 3 seconds
+            setTimeout(() => {
+                if (document.getElementById('map-instruction')) {
+                    document.getElementById('map-instruction').remove();
+                }
+                map.getContainer().style.cursor = '';
+            }, 3000);
+        }
+    });
+
     // Manual price calculation for destination input
     destinationInput.addEventListener('input', calculatePrice);
 
     function calculatePrice() {
         if (locationInput.value && destinationInput.value) {
-            const distance = simulateDistanceCalculation(locationInput.value, destinationInput.value);
-            const price = baseRate + (perKmRate * distance);
-            priceDisplay.textContent = `PHP ${price.toFixed(0)}`;
+            if (userLocation && destinationLocation) {
+                // We already have calculated actual distance
+                calculateActualDistance();
+            } else {
+                // Fallback to estimated distance
+                const distance = simulateDistanceCalculation(locationInput.value, destinationInput.value);
+                const price = baseRate + (perKmRate * distance);
+                priceDisplay.textContent = `PHP ${price.toFixed(0)}`;
+            }
         }
     }
 
@@ -206,20 +430,30 @@ document.addEventListener('DOMContentLoaded', function() {
         priceDisplay.textContent = 'PHP --';
         
         // Reset map if exists
-        if (map && userMarker) {
-            map.removeLayer(userMarker);
+        if (map) {
+            if (userMarker) map.removeLayer(userMarker);
+            if (destinationMarker) map.removeLayer(destinationMarker);
+            if (window.routeLayer) map.removeLayer(window.routeLayer);
             userMarker = null;
+            destinationMarker = null;
+            destinationLocation = null;
         }
     }
 
     goAction.addEventListener('click', function() {
         if (nameInput.value && locationInput.value && destinationInput.value && contactInput.value) {
-            // Store location in localStorage
-            if (userLocation) {
+            // Store location and destination in localStorage
+            if (userLocation && destinationLocation) {
                 localStorage.setItem('userLocation', JSON.stringify({
                     lat: userLocation.lat,
                     lng: userLocation.lng,
                     address: locationInput.value
+                }));
+                
+                localStorage.setItem('userDestination', JSON.stringify({
+                    lat: destinationLocation.lat,
+                    lng: destinationLocation.lng,
+                    address: destinationInput.value
                 }));
             }
             
