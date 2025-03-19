@@ -66,4 +66,10 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Please fill in all required fields');
         }
     });
+
+    function onMapClick(e) {
+        alert("You clicked the map at " + e.latlng);
+    }
+    
+    map.on('click', onMapClick);
 });
