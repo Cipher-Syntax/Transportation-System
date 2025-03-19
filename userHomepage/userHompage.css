@@ -227,7 +227,7 @@ footer{
 }
 .overlay-form {
     height: 1100px;
-    width: 550px;
+    width: 500px;
     background-color: #F5F5F5;
     position: absolute;
     top: 50%;
@@ -303,7 +303,7 @@ footer{
     display: flex;
     align-items: center;
     justify-content: center;
-    column-gap: 400px;
+    column-gap: 300px;
     font-size: 24px;
     margin-top: 160px;
 }
