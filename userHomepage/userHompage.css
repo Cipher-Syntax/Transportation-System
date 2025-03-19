@@ -308,6 +308,14 @@ footer{
     margin-top: 20px;
     /* margin-top: 160px; */
 }
+#map{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    height: 180px;
+    width: 90%px;
+}
 .cancel {
     color: #7F8C8D;
     cursor: pointer;
