@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const baseRate = 50;
     const perKmRate = 25;
     
-    // overlayForm.style.display = 'none';
+    overlayForm.style.display = 'none';
 
     // linkCatchphrase.addEventListener('click', function() {
     //     overlayForm.style.display = 'block';
