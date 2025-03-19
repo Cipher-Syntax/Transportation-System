@@ -308,13 +308,15 @@ footer{
     margin-top: 20px;
     /* margin-top: 160px; */
 }
-#map{
+.map-integration{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+#map{
     margin-top: 20px;
     height: 180px;
-    width: 90%px;
+    width: 90%;
 }
 .cancel {
     color: #7F8C8D;
