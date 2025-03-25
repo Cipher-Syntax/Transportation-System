@@ -1,0 +1,12 @@
+# Ignore all PHP files
+# *.php
+
+# Ignore specific sensitive files
+connection.php
+allFunction.php
+admin.php
+login_authentication.php
+signup_authentication.php
+
+# Ignore environment files
+.env

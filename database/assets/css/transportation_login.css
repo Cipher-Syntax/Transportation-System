@@ -1,0 +1,114 @@
+html {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat Alternates", sans-serif;
+    max-width: 720px;
+}
+
+body {
+    background-color: #F5F5F5;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #1E8449;
+    color: #FFFFFF;
+    text-align: center;
+    height: 300px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#logo {
+    font-size: 70px;
+    font-weight: bold;
+}
+
+#login {
+    margin-top: 50px;
+    font-size: 40px;
+    color: #1E8449;
+    text-align: center;
+    text-shadow: 0px 12px 20px rgba(0, 0, 0, 0.5);
+}
+
+.user-registration {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 350px;
+}
+
+.user-registration input {
+    padding: 6px;
+    margin-bottom: 40px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: #F5F5F5;
+    outline: none;
+    border-bottom: 2px solid #27AE60;
+    color: #2C3E50;
+    width: 100%;
+}
+
+.user-registration input::placeholder {
+    color: #7F8C8D;
+}
+
+#login-btn {
+    max-width: 200px;
+    border: 2px solid #27AE60;
+    background-color: #27AE60;
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 0;
+    padding: 8px;
+    cursor: pointer;
+}
+
+#login-btn:hover {
+    background-color: #1E8449;
+}
+
+.links {
+    padding: 12px;
+    text-align: center;
+    font-size: 12px;
+    color: #1E8449;
+}
+
+.links a {
+    text-decoration: none;
+    font-size: 12px;
+    color: #1E8449;
+    font-weight: bold;
+}
+
+#create {
+    font-weight: bold;
+}
+
+#create:hover {
+    color: #F39C12;
+    text-decoration: underline;
+}
+
+#forgot {
+    color: #7F8C8D;
+}
+
+#forgot:hover {
+    color: #C0392B;
+    text-decoration: underline;
+}
