@@ -1,0 +1,101 @@
+html {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+* {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    max-width: 720px;
+}
+body {
+    font-family: "Montserrat Alternates";
+    background-color: #F5F5F5;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #1E8449;
+    color: #FFFFFF;
+    text-align: center;
+    height: 300px;
+    width: 100%;
+}
+#logo {
+    align-items: center;
+    font-size: 70px;
+    padding-top: 90px;
+    font-weight: bold;
+}
+#create-account {
+    margin-top: 50px;
+    font-size: 40px;
+    color: #1E8449;
+    text-align: center;
+    text-shadow: 0px 12px 20px rgba(0, 0, 0, 0.5);
+}
+.user-registration {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 350px;
+}
+.user-registration input {
+    padding: 6px;
+    margin-bottom: 40px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background-color: #F5F5F5;
+    border-bottom: 2px solid #27AE60;
+    outline: none;
+    color: #2C3E50;
+}
+.fullname {
+    display: grid;
+    grid-template-columns: 100px 100px;
+    column-gap: 90px;
+}
+#firstname {
+    width: 160px;
+}
+#lastname {
+    width: 160px;
+}
+#createAccount-btn {
+    max-width: 200px;
+    border: 1px solid #27AE60;
+    background-color: #27AE60;
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 0;
+    padding: 8px;
+    cursor: pointer;
+}
+#createAccount-btn:hover {
+    background-color: #27AE60;
+    border: 1px solid #27AE60;
+}
+.links {
+    padding: 12px;
+    text-align: center;
+    font-size: 10px;
+}
+.links a {
+    text-decoration: none;
+    font-size: 10px;
+    color: #1E8449;
+}
+#create {
+    font-weight: bold;
+}
+#create:hover {
+    text-decoration: underline;
+}
+#forgot:hover {
+    text-decoration: underline;
+}
