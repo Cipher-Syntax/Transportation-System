@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoMove - Landing Page</title>
+    <link rel="stylesheet" href="LANDING PAGE.css">
+</head>
+
+<body>
+    <div class="main-container">
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo-container">
+                <div class="logo">GoMove</div>
+            </div>
+            <div class="nav-menu">
+                <div class="nav-item">Home</div>
+                <div class="nav-item">Profile</div>
+                <div class="nav-item">History</div>
+                <div class="nav-item">Settings</div>
+            </div>
+            <div class="logout-container">
+                <a href="#" class="logout-link">Logout</a>
+                <div class="user-avatar">
+                    <img src="https://via.placeholder.com/40" alt="User Avatar">
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="content-area">
+            <div class="header-bar">
+                <div class="header-icon">🔔</div>
+                <div class="header-icon">👤</div>
+            </div>
+
+
+            <!-- Breadcrumb Navigation Niggers-->
+            <div class="breadcrumb-container">
+                <div class="breadcrumb">
+                    <div class="breadcrumb-step">
+                        <div class="step-circle step-active">1</div>
+                        <div class="step-text">Booking details</div>
+                    </div>
+                    <div class="breadcrumb-step">
+                        <div class="step-circle step-inactive">2</div>
+                        <div class="step-text-inactive">Email verification</div>
+                    </div>
+                    <div class="breadcrumb-step">
+                        <div class="step-circle step-inactive">3</div>
+                        <div class="step-text-inactive">Booking completed</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="form-card">
+                    <h2 class="form-title">Need a ride?</h2>
+
+                    <div class="form-group">
+                        <label>Location<span class="required">*</span></label>
+                        <input type="text" class="form-control" placeholder="Enter pickup location">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Destination<span class="required">*</span></label>
+                        <input type="text" class="form-control" placeholder="Enter your destination">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Contact No<span class="required">*</span></label>
+                        <input type="text" class="form-control" placeholder="(+63) 123 - 456 - 7890">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Pickup Time<span class="required">*</span></label>
+                        <select class="form-control">
+                            <option>In 20 minutes</option>
+                            <option>In 30 minutes</option>
+                            <option>In 1 hour</option>
+                            <option>Schedule for later</option>
+                        </select>
+                    </div>
+
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3298.7343565957763!2d122.0602563921622!3d6.911340610879159!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x325041dd7a24816f%3A0x51af215fb64cc81a!2sWestern%20Mindanao%20State%20University!5e0!3m2!1sen!2sph!4v1743955741865!5m2!1sen!2sph"></iframe>
+                    </div>
+
+                    <div class="estimated-price">
+                        <span>Estimated Price: <span id="price-range">PHP Depends on how far is the destination from
+                                pick up the point</span></span>
+                    </div>
+                    <button class="submit-btn">Next</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
