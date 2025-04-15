@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoMove - Create Account</title>
+    <link rel="stylesheet" href="CREATE ACCOUNT PAGE.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <div class="login-container" id="create-account-container">
+        <div class="header" id="page-header">
+            <h1 class="brand-name">GoMove</h1>
+            <p class="brand-tagline">We've got your back, no matter where you are!</p>
+        </div>
+        <div class="form-container" id="create-account-form-container">
+            <h2 class="form-title">Create Account</h2>
+            <form id="createAccountForm" class="account-form" name="createAccountForm">
+                <div class="form-row name-row">
+                    <div class="form-group first-name-group">
+                        <label for="firstName" class="form-label">First Name<span class="required">*</span></label>
+                        <input type="text" id="firstName" name="firstName" class="form-input" required>
+                    </div>
+                    <div class="form-group last-name-group">
+                        <label for="lastName" class="form-label">Last Name<span class="required">*</span></label>
+                        <input type="text" id="lastName" name="lastName" class="form-input" required>
+                    </div>
+                </div>
+                <div class="form-group email-group">
+                    <label for="userEmail" class="form-label">Email<span class="required">*</span></label>
+                    <input type="email" id="userEmail" name="userEmail" class="form-input" placeholder="@gmail.com"
+                        required>
+                </div>
+                <div class="form-group password-group">
+                    <label for="userPassword" class="form-label">Password<span class="required">*</span></label>
+                    <div class="password-wrapper">
+                        <input type="password" id="userPassword" name="userPassword" class="form-input password-input"
+                            oninput="checkPasswordInput('userPassword')" required>
+                        <button type="button" class="toggle-password hidden" id="toggle-userPassword"
+                            onclick="togglePassword('userPassword')">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group confirm-password-group">
+                    <label for="confirmPassword" class="form-label">Confirm Password<span
+                            class="required">*</span></label>
+                    <div class="password-wrapper">
+                        <input type="password" id="confirmPassword" name="confirmPassword"
+                            class="form-input password-input" oninput="checkPasswordInput('confirmPassword')" required>
+                        <button type="button" class="toggle-password hidden" id="toggle-confirmPassword"
+                            onclick="togglePassword('confirmPassword')">
+                            <i class="fa fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="btn-create" id="createAccountBtn">Create Account</button>
+                <div class="login-link" id="loginLinkContainer">
+                    Already have an account? <a href="LOG IN PAGE - WEB.html" class="login-redirect" id="loginLink">Log in</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword(inputId) {
+            const passwordInput = document.getElementById(inputId);
+            const toggleButtonId = 'toggle-' + inputId;
+            const toggleButton = document.getElementById(toggleButtonId);
+            const icon = toggleButton.querySelector('i');
+
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+
+        function checkPasswordInput(inputId) {
+            const passwordInput = document.getElementById(inputId);
+            const toggleButtonId = 'toggle-' + inputId;
+            const toggleButton = document.getElementById(toggleButtonId);
+
+            if (passwordInput.value.length > 0) {
+                toggleButton.classList.remove('hidden');
+            } else {
+                toggleButton.classList.add('hidden');
+                passwordInput.type = 'password';
+                const icon = toggleButton.querySelector('i');
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
+    </script>
+</body>
+
+</html>
